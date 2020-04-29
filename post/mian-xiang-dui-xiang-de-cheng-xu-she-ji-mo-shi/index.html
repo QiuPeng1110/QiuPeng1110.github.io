@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1588173898774">
+<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1588173923609">
 <link rel="stylesheet" href="https://qiupeng1110.github.io//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://qiupeng1110.github.io/">
-        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1588173898774" class="site-logo">
+        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1588173923609" class="site-logo">
         <h1 class="site-title">浅薄之见</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -100,7 +100,7 @@
               <p>早先时候，对设计模式是没有多大体会的。后面逐渐领会到其意义之深，实则是承各大牛总结出来的几近最优的程序设计方案，当然使用起来，一样需要根据场景灵活运用。</p>
 <p>我常想究竟什么样的代码才称得上是优雅的代码，逐渐在代码的日子中悟到：某种意义上其实不是追究极致的运行速度，更重要的反而是方便测试，修改，阅读。我也恼于修改别人的代码，也记不起当初自己如何脑子抽筋写下些令自己羞于承认的方法。总而言之，程序的设计模式是在尽力追求性能的同时，方便其后的扩展，修改。</p>
 <!-- more -->
-<h3 id="首先设计模式有六大原则">首先设计模式有六大原则：</h3>
+<h3 id="设计模式有六大原则">设计模式有六大原则：</h3>
 <h4 id="一开闭原则-对扩展开放对修改关闭使用抽象类和接口">一.开闭原则： 对扩展开放，对修改关闭，使用抽象类和接口。</h4>
 <p>即程序的设计应该考虑的是对后的功能的增加，让代码支持其在当前的基础上添加代码，而不是修改已经运行的代码。毕竟修改的结果无法预料：我刚参加工作时，就是改接口——将之前调用的第三方接口换成公司新开发的接口，其中涉及到一个消息队列的接入，但这个消息队列需要嵌入到以前的接口之中，可是因为封装的json格式解析的原因，不得不修改之前的switch-case，然后我脑子抽了一下，把之前的队列接收给注释了，然后只测试了新的消息队列，结果导致2天累计了几百万个未消费的消息堵塞在哪里。</p>
 <p>因为经验的原因，难以想到一个良好的方式兼容之后的代码，这是每个程序员都要经历的阶段，但是我们有前人的经验，显然这个六种设计模式就是最好的参考。</p>
