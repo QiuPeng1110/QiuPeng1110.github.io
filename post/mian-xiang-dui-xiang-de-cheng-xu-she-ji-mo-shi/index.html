@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1588173813103">
+<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1588173898774">
 <link rel="stylesheet" href="https://qiupeng1110.github.io//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://qiupeng1110.github.io/">
-        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1588173813103" class="site-logo">
+        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1588173898774" class="site-logo">
         <h1 class="site-title">浅薄之见</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -100,15 +100,15 @@
               <p>早先时候，对设计模式是没有多大体会的。后面逐渐领会到其意义之深，实则是承各大牛总结出来的几近最优的程序设计方案，当然使用起来，一样需要根据场景灵活运用。</p>
 <p>我常想究竟什么样的代码才称得上是优雅的代码，逐渐在代码的日子中悟到：某种意义上其实不是追究极致的运行速度，更重要的反而是方便测试，修改，阅读。我也恼于修改别人的代码，也记不起当初自己如何脑子抽筋写下些令自己羞于承认的方法。总而言之，程序的设计模式是在尽力追求性能的同时，方便其后的扩展，修改。</p>
 <!-- more -->
-<h1 id="首先设计模式有六大原则">首先设计模式有六大原则：</h1>
-<h2 id="一开闭原则-对扩展开放对修改关闭使用抽象类和接口">一.开闭原则： 对扩展开放，对修改关闭，使用抽象类和接口。</h2>
+<h3 id="首先设计模式有六大原则">首先设计模式有六大原则：</h3>
+<h4 id="一开闭原则-对扩展开放对修改关闭使用抽象类和接口">一.开闭原则： 对扩展开放，对修改关闭，使用抽象类和接口。</h4>
 <p>即程序的设计应该考虑的是对后的功能的增加，让代码支持其在当前的基础上添加代码，而不是修改已经运行的代码。毕竟修改的结果无法预料：我刚参加工作时，就是改接口——将之前调用的第三方接口换成公司新开发的接口，其中涉及到一个消息队列的接入，但这个消息队列需要嵌入到以前的接口之中，可是因为封装的json格式解析的原因，不得不修改之前的switch-case，然后我脑子抽了一下，把之前的队列接收给注释了，然后只测试了新的消息队列，结果导致2天累计了几百万个未消费的消息堵塞在哪里。</p>
 <p>因为经验的原因，难以想到一个良好的方式兼容之后的代码，这是每个程序员都要经历的阶段，但是我们有前人的经验，显然这个六种设计模式就是最好的参考。</p>
-<h2 id="二里氏替换原则基类可以被子类替换">二.里氏替换原则：基类可以被子类替换。</h2>
+<h4 id="二里氏替换原则基类可以被子类替换">二.里氏替换原则：基类可以被子类替换。</h4>
 <p>“Inheritance should ensure that any property proved about supertype objects also holds for subtype objects.”——Liskov</p>
 <p>即“继承必须确保超类所拥有的性质在子类中仍然成立。”即is-A关系，在《Effective Java》中第18条指出：复合优先于继承，首先继承会打破面向对象的封装性。封装就是隐藏对象的属性和实现细节，仅对外公开接口。封装的好处是将内部数据的处理隐藏起来，对外提供额外的访问方法  ，这也是相对于面向过程，面向对象编程的一种体现。继承后超类的改变也会使子类遭到破坏。另外还提出了一种处理方法，对不严谨的is-A关系，建议采用复合的形式——添加现有类（原需继承的父类）作为实例的私有域。这种方式也是之后会说的装饰者模式。</p>
 <p>以上会发现一点：封装和继承的特性似乎有点冲突。有个解释如下：封装更多的体现是以类作为最小单位在程序中表现，即表现面向对象的编程思想。而继承更像是现在讨论的一种程序设计方式，通过抽取子类共有的属性和行为成为父类。另外良好的父类设计，只对子类展示其向下共有的属性和方法，反而是一种优秀的封装的体现。</p>
-<h2 id="三依赖倒转原则要依赖于抽象不要依赖于具体针对接口编程不针对实现编程">三.依赖倒转原则：要依赖于抽象,不要依赖于具体，针对接口编程,不针对实现编程。</h2>
+<h4 id="三依赖倒转原则要依赖于抽象不要依赖于具体针对接口编程不针对实现编程">三.依赖倒转原则：要依赖于抽象,不要依赖于具体，针对接口编程,不针对实现编程。</h4>
 <p>程序设计的依赖指的是上层的业务模型要层层使用下层的业务，例制造一辆车需要配好一副车轮，如果车轮改变，那么车子的设计也需要跟着变化。现在设计一种模式，轮子的设计按照一种模式实现（接口），造车不需要考虑轮子的具体实现，依据接口即可，在组装的时候，给的什么轮子装啥轮子。这便是依赖倒置原则——造车不依赖于轮子的具体设计，反而我车子需要什么轮子，就给什么轮子。也即是面向接口编程。同时这也是三大特性的多态的体现。</p>
 <p>另：六中设计模式处处都是透露着面向对象的三大特性。</p>
 <!-- more -->
