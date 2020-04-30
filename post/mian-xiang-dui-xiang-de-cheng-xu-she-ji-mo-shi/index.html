@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1588173923609">
+<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1588254385458">
 <link rel="stylesheet" href="https://qiupeng1110.github.io//styles/main.css">
 
 
@@ -35,7 +35,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://qiupeng1110.github.io/">
-        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1588173923609" class="site-logo">
+        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1588254385458" class="site-logo">
         <h1 class="site-title">浅薄之见</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -110,7 +110,21 @@
 <p>以上会发现一点：封装和继承的特性似乎有点冲突。有个解释如下：封装更多的体现是以类作为最小单位在程序中表现，即表现面向对象的编程思想。而继承更像是现在讨论的一种程序设计方式，通过抽取子类共有的属性和行为成为父类。另外良好的父类设计，只对子类展示其向下共有的属性和方法，反而是一种优秀的封装的体现。</p>
 <h4 id="三依赖倒转原则要依赖于抽象不要依赖于具体针对接口编程不针对实现编程">三.依赖倒转原则：要依赖于抽象,不要依赖于具体，针对接口编程,不针对实现编程。</h4>
 <p>程序设计的依赖指的是上层的业务模型要层层使用下层的业务，例制造一辆车需要配好一副车轮，如果车轮改变，那么车子的设计也需要跟着变化。现在设计一种模式，轮子的设计按照一种模式实现（接口），造车不需要考虑轮子的具体实现，依据接口即可，在组装的时候，给的什么轮子装啥轮子。这便是依赖倒置原则——造车不依赖于轮子的具体设计，反而我车子需要什么轮子，就给什么轮子。也即是面向接口编程。同时这也是三大特性的多态的体现。</p>
-<p>另：六中设计模式处处都是透露着面向对象的三大特性。</p>
+<h4 id="四接口隔离原则使用多个隔离的接口比使用单个接口好建立最小的接口">四.接口隔离原则：使用多个隔离的接口,比使用单个接口好，建立最小的接口。</h4>
+<p>接口隔离原则和单一职责原则（面向对象的原则），接口隔离更多的是指不同接口类之间的交互，但是单一职责原则更多的是体现面向对象的思想——一个类只负责一种事情。接口隔离要求接口更加的细化，避免出现接口中的某个方法超出了实现类的职责范围。例存在动物接口，有吃，睡，走路等方法，但显然如果由鱼类来实现该接口时，走路的方法的实现并不合适。因而需要细化动物接口，例如将动物细分为鱼纲，鸟纲，哺乳纲等。</p>
+<h4 id="五迪米特法则最少知识原则一个软件实体应当尽可能少地与其他实体发生相互作用通过中间类建立联系">五.迪米特法则（最少知识原则）：一个软件实体应当尽可能少地与其他实体发生相互作用，通过中间类建立联系。</h4>
+<p>迪米特法则是最能体现面向对象思想的。学习面向对象时，经常会举下例说明：一个人需要吃饭，她只需要将做饭这个事情交个厨师，至于买菜，择菜，锅碗瓢盆等一律不关心。迪米特法则就是强调不要吃饭的人不应该去和买菜择菜等事情产生关联，与自己需要的饭菜之间只有向厨师下达做饭命令这个关系。在接口的设计中，如果能保证迪米特法则，显然接口的健壮性会大大的提高，这样无论厨师怎样做饭，外界都不会去关心，这样的接口无疑时极其方便维护和测试的。</p>
+<h4 id="六合成复用原则尽量使用合成聚合而不是使用继承">六.合成复用原则：尽量使用合成/聚合,而不是使用继承。</h4>
+<p>在以上的里氏替换原则中有提到，当两个类不满足“is-A”关系时，将作为新对象的一个私有域来实现获得原对象的功能，或者增强其功能。</p>
+<p>（继承在程序设计中并不是那么友好，但是体现了面向对象的思想以及会在某种情况下节省许多代码）</p>
+<p>注：<br>
+1.六中设计模式处处都是透露着面向对象的三大特性。<br>
+2.区分面向对象的五大原则：<br>
+a.单一职责原则；<br>
+b.开放封闭原则；<br>
+c.里氏替换原则；<br>
+d.接口隔离原则；<br>
+e.依赖倒置原则。</p>
 <!-- more -->
 <p>参考资料：<br>
 《Effective Java》第三版；<br>
