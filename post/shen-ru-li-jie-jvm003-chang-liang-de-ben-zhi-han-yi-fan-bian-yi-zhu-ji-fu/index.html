@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>23种设计模式总录 | 浅薄之见</title>
+<title>深入理解JVM（003常量的本质含义，反编译，助记符） | 浅薄之见</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -24,10 +24,10 @@
 
 
 
-    <meta name="description" content="创建模式:
-    单例模式：全局只有一个实例，如 java.lang.Runtime#getRuntime()。
-    抽象工厂模式：抽象工厂模式提供了一个协议来生成一系列的相关或者独立的对象，而不用指定具体对象的类型，如 java.u..." />
-    <meta name="keywords" content="设计模式" />
+    <meta name="description" content="常量
+ 1.常量在编译阶段回存入到调用这个常量的方法所在的类的常量池中，本质上调用类把并没有直接引用到定义常量的类，因此并不会触发定义常量的类的初始化。
+ 2.当一个常量的值并非编译期间可以确定的，那么其值就不会被放到被调用类的常量池中，这..." />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -94,51 +94,28 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">23种设计模式总录</h2>
-            <div class="post-date">2020-05-03</div>
+            <h2 class="post-title">深入理解JVM（003常量的本质含义，反编译，助记符）</h2>
+            <div class="post-date">2020-05-17</div>
             
             <div class="post-content" v-pre>
-              <h3 id="创建模式">创建模式:</h3>
-<pre><code>    单例模式：全局只有一个实例，如 java.lang.Runtime#getRuntime()。
-    抽象工厂模式：抽象工厂模式提供了一个协议来生成一系列的相关或者独立的对象，而不用指定具体对象的类型，如 java.util.Calendar#getInstance()。
-    建造模式(Builder)：定义了一个新的类来构建另一个类的实例，以简化复杂对象的创建，如：java.lang.StringBuilder#append()。
-    工厂方法：就是 一个返回具体对象的方法，而不是多个，如 java.lang.Object#toString()、java.lang.Class#newInstance()。
-    原型模式：使得类的实例能够生成自身的拷贝、如：java.lang.Object#clone()。
+              <h3 id="常量">常量</h3>
+<pre><code> 1.常量在编译阶段回存入到调用这个常量的方法所在的类的常量池中，本质上调用类把并没有直接引用到定义常量的类，因此并不会触发定义常量的类的初始化。
+ 2.当一个常量的值并非编译期间可以确定的，那么其值就不会被放到被调用类的常量池中，这时在程序时，导致主动使用这个常量所在的类，显然会导致这个类被初始化。
 </code></pre>
-<h3 id="结构型模式">结构型模式：</h3>
-<pre><code>    适配器：用来把一个接口转化成另一个接口，如 java.util.Arrays#asList()。
-    桥接模式：这个模式将抽象和抽象操作的实现进行了解耦，这样使得抽象和实现可以独立地变化，如JDBC；
-    组合模式：使得客户端看来单个对象和对象的组合是同等的。换句话说，某个类型的方法同时也接受自身类型作为参数，如 Map.putAll，List.addAll、Set.addAll。
-    装饰者模式：动态的给一个对象附加额外的功能，这也是子类的一种替代方式，如 java.util.Collections#checkedList|Map|Set|SortedSet|SortedMap。
-    享元模式：使用缓存来加速大量小对象的访问时间，如 valueOf(int)。
-    代理模式：代理模式是用一个简单的对象来代替一个复杂的或者创建耗时的对象，如 java.lang.reflect.Proxy
-</code></pre>
-<h3 id="行为模式">行为模式：</h3>
-<pre><code>    责任链模式：通过把请求从一个对象传递到链条中下一个对象的方式，直到请求被处理完毕，以实现对象间的解耦。如 javax.servlet.Filter#doFilter()。
-    命令模式：将操作封装到对象内，以便存储，传递和返回，如：java.lang.Runnable。
-    解释器模式：定义了一个语言的语法，然后解析相应语法的语句，如，java.text.Format，java.text.Normalizer。
-    迭代器模式：提供一个一致的方法来顺序访问集合中的对象，如 java.util.Iterator。
-    中介者模式：通过使用一个中间对象来进行消息分发以及减少类之间的直接依赖，java.lang.reflect.Method#invoke()。
-    空对象模式：如 java.util.Collections#emptyList()。
-    观察者模式：它使得一个对象可以灵活的将消息发送给感兴趣的对象，如 java.util.EventListener。
-    模板方法模式：让子类可以重写方法的一部分，而不是整个重写，如 java.util.Collections#sort()。</code></pre>
+<h3 id="助记符">助记符</h3>
+<pre><code> ldc表示将int，float，Strng类型的常量值从常量池中推送至栈顶；
+ bipush ...单字节（-128-127）...
+ sipush  ...短整型（-32768-32767）....
+ iconst_1 ...int类型1....（iconstm1 - iconst_5）</code></pre>
 
             </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://qiupeng1110.github.io/tag/PMk2lRDj1/" class="tag">
-                    设计模式
-                  </a>
-                
-              </div>
             
             
               <div class="next-post">
                 <div class="next">下一篇</div>
-                <a href="https://qiupeng1110.github.io/post/mian-xiang-dui-xiang-de-cheng-xu-she-ji-mo-shi/">
+                <a href="https://qiupeng1110.github.io/post/shen-ru-li-jie-jvm002/">
                   <h3 class="post-title">
-                    面向对象的程序设计模式
+                    深入理解JVM（002类加载）
                   </h3>
                 </a>
               </div>
