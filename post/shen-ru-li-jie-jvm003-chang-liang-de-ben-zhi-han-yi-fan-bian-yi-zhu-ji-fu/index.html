@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1589722165911">
+<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1589895446974">
 <link rel="stylesheet" href="https://qiupeng1110.github.io//styles/main.css">
 
 
@@ -25,7 +25,7 @@
 
 
     <meta name="description" content="常量
- 1.常量在编译阶段回存入到调用这个常量的方法所在的类的常量池中，本质上调用类把并没有直接引用到定义常量的类，因此并不会触发定义常量的类的初始化。
+ 1.常量在编译阶段会存入到调用这个常量的方法所在的类的常量池中，本质上调用类把并没有直接引用到定义常量的类，因此并不会触发定义常量的类的初始化。
  2.当一个常量的值并非编译期间可以确定的，那么其值就不会被放到被调用类的常量池中，这..." />
     <meta name="keywords" content="" />
   </head>
@@ -36,7 +36,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://qiupeng1110.github.io/">
-        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1589722165911" class="site-logo">
+        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1589895446974" class="site-logo">
         <h1 class="site-title">浅薄之见</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -99,8 +99,9 @@
             
             <div class="post-content" v-pre>
               <h3 id="常量">常量</h3>
-<pre><code> 1.常量在编译阶段回存入到调用这个常量的方法所在的类的常量池中，本质上调用类把并没有直接引用到定义常量的类，因此并不会触发定义常量的类的初始化。
+<pre><code> 1.常量在编译阶段会存入到调用这个常量的方法所在的类的常量池中，本质上调用类把并没有直接引用到定义常量的类，因此并不会触发定义常量的类的初始化。
  2.当一个常量的值并非编译期间可以确定的，那么其值就不会被放到被调用类的常量池中，这时在程序时，导致主动使用这个常量所在的类，显然会导致这个类被初始化。
+ 3.当一个接口初始化时，并不要求其父接口都完成了初始化。只有真正使用到父接口的时候（如引用接口中所定义的常量时），才会初始化。（存疑）
 </code></pre>
 <h3 id="助记符">助记符</h3>
 <pre><code> ldc表示将int，float，Strng类型的常量值从常量池中推送至栈顶；

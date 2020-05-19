@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://qiupeng1110.github.io/</id>
     <title>浅薄之见</title>
-    <updated>2020-05-17T13:29:43.031Z</updated>
+    <updated>2020-05-19T13:37:29.612Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://qiupeng1110.github.io/"/>
     <link rel="self" href="https://qiupeng1110.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://qiupeng1110.github.io/images/avatar.png</logo>
     <icon>https://qiupeng1110.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 浅薄之见</rights>
+    <entry>
+        <title type="html"><![CDATA[类加载深入解析及重要性剖析（004）]]></title>
+        <id>https://qiupeng1110.github.io/post/lei-jia-zai-shen-ru-jie-xi-ji-chong-yao-xing-pou-xi/</id>
+        <link href="https://qiupeng1110.github.io/post/lei-jia-zai-shen-ru-jie-xi-ji-chong-yao-xing-pou-xi/">
+        </link>
+        <updated>2020-05-19T12:50:37.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[深入理解JVM（003常量的本质含义，反编译，助记符）]]></title>
         <id>https://qiupeng1110.github.io/post/shen-ru-li-jie-jvm003-chang-liang-de-ben-zhi-han-yi-fan-bian-yi-zhu-ji-fu/</id>

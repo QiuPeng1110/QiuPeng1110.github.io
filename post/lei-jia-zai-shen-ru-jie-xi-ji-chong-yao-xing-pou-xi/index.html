@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | 浅薄之见</title>
+<title>类加载深入解析及重要性剖析（004） | 浅薄之见</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -24,17 +24,13 @@
 
 
 
-    <meta name="description" content="
-
-
-欢迎来到我的小站呀，很高兴遇见你！🤝
-
-🏠 关于本站
-👨‍💻 博主是谁
-⛹ 兴趣爱好
-📬 联系我呀
-..." />
-    <meta name="keywords" content="" />
+    <meta name="description" content="类加载的最终产品时位于内存中的class对象；
+Class对象封装了类在方法区内的数据结构，并且向Java程序员提供了访问方法区内的数据接口。
+类加载器
+1.JAVA虚拟机自带的加载器：
+a.根类加载器（Bootstrap）;
+b.扩展类加..." />
+    <meta name="keywords" content="深入理解JVM" />
   </head>
   <body>
     <div id="app" class="main">
@@ -101,22 +97,63 @@
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
           <div class="post-detail">
-            <h2 class="post-title">关于</h2>
-            <div class="post-date">2019-01-25</div>
+            <h2 class="post-title">类加载深入解析及重要性剖析（004）</h2>
+            <div class="post-date">2020-05-19</div>
             
             <div class="post-content" v-pre>
-              <!-- more -->
-<!-- more -->
-<blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+              <p>类加载的最终产品时位于内存中的class对象；<br>
+Class对象封装了类在方法区内的数据结构，并且向Java程序员提供了访问方法区内的数据接口。</p>
+<h3 id="类加载器">类加载器</h3>
+<p>1.JAVA虚拟机自带的加载器：<br>
+a.根类加载器（Bootstrap）;<br>
+b.扩展类加载器（Extension）;<br>
+c.系统（应用）类加载器（System）。<br>
+2.用户自定义的类加载器：<br>
+a.Java.lang.ClassLoader的子类；<br>
+b.用户可以定制类的加载方式。</p>
+<h4 id="类加载器并不需要等到某个类首次主动使用时再加载它区分初始化">类加载器并不需要等到某个类“首次主动使用”时再加载它（区分初始化）</h4>
+<pre><code> q:JVM规范允许类加载器在预料某个类将要被使用时就预先加载，允许.class文件缺失或错误。只有在程序首次主动使用该类时，才报告错误（LinkageError）;
+</code></pre>
+<h3 id="类的连接阶段">类的连接阶段</h3>
+<pre><code>    连接就是将已经读到内存的类的二进制数据合并到虚拟机的运行时环境中。
+</code></pre>
+<h4 id="1验证">1.验证</h4>
+<pre><code>            a.类文件的结构检查；
+            b.语义检查；
+            c.字节码验证；
+            d.二进制兼容性的验证。
+</code></pre>
+<h4 id="2准备">2.准备</h4>
+<pre><code>            a.为静态变量分配内存，并设置默认值。
+</code></pre>
+<h4 id="3解析">3.解析</h4>
+<h3 id="类的初始化">类的初始化</h3>
+<pre><code>        为静态变量赋予初始值。
+        1.若为加载和连接，先加载和连接；
+        2.存在直接父类未初始化，先初始化父类；
+        3.若存在初始化语句，按顺序执行。
+</code></pre>
+<h4 id="静态变量的声明语句及静态代码块都被看作类的初始化语句java虚拟机会按照初始化语句在类文件中中的先后顺序来依次执行">静态变量的声明语句，及静态代码块都被看作类的初始化语句，java虚拟机会按照初始化语句在类文件中中的先后顺序来依次执行。</h4>
 
             </div>
             
+              <div class="tag-container">
+                
+                  <a href="https://qiupeng1110.github.io/tag/gBmKWM2dk/" class="tag">
+                    深入理解JVM
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://qiupeng1110.github.io/post/shen-ru-li-jie-jvm003-chang-liang-de-ben-zhi-han-yi-fan-bian-yi-zhu-ji-fu/">
+                  <h3 class="post-title">
+                    深入理解JVM（003常量的本质含义，反编译，助记符）
+                  </h3>
+                </a>
+              </div>
             
 
             
