@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>K8S | 浅薄之见</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://qiupeng1110.github.io//favicon.ico?v=1592706030607">
+<link rel="stylesheet" href="https://qiupeng1110.github.io//styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="组件说明
+ maseter： scheduler + **api server** + replication controller
+ node     :   kubelet（维持POD生命周期） + kube proxy（与firewa..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://qiupeng1110.github.io/">
+        <img src="https://qiupeng1110.github.io//images/avatar.png?v=1592706030607" class="site-logo">
+        <h1 class="site-title">浅薄之见</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+          <a class="social-link" href="https://github.com/QiuPeng1110" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        
+      
+        
+      
+        
+          <a class="social-link" href="https://weibo.com/3700321075/profile?rightmod=1&amp;wvr=6&amp;mod=personinfo" target="_blank">
+            <i class="fab fa-weibo"></i>
+          </a>
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      “所谓诚其意者，勿自欺也”——《礼记》
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://qiupeng1110.github.io//atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">K8S</h2>
+            <div class="post-date">2020-06-21</div>
+            
+            <div class="post-content" v-pre>
+              <h3 id="组件说明">组件说明</h3>
+<pre><code> maseter： scheduler + **api server** + replication controller
+ node     :   kubelet（维持POD生命周期） + kube proxy（与firewall负载均衡以及映射） + container
+ etcd      :   可信赖（单独支持集群化服务，不需要其它组件）的分布式键值对存储服务，推荐使用V3版本（对于V2增加持久化）
+</code></pre>
+<h3 id="etcd">ETCD</h3>
+<pre><code> HTTP Server &lt;-&gt; Raft &lt;-&gt; WAL（Entry + Snapshop） + Store
+</code></pre>
+<h3 id="高可用集群副本数据最好是3奇数个">高可用集群副本数据最好是&gt;=3奇数个</h3>
+<h3 id="api-server-所有服务访问统一入口">API SERVER : 所有服务访问统一入口；</h3>
+<h3 id="controllermanager维持副本期望数目">ControllerManager：维持副本期望数目</h3>
+<h3 id="scheduler负责介绍任务选择合适的节点进行分配任务">Scheduler：负责介绍任务，选择合适的节点进行分配任务</h3>
+<h3 id="etcd键值对数据库储存k8s集群所有重要信息持久化">ETCD：键值对数据库，储存K8S集群所有重要信息（持久化）</h3>
+<h3 id="kublet-直接跟容器引擎交互实现容器的生命周期管理">Kublet ：直接跟容器引擎交互实现容器的生命周期管理</h3>
+<h3 id="kube-proxy负责写入规则至iptablesipvs实现服务映射访问">Kube Proxy：负责写入规则至IPTABLES，IPVS实现服务映射访问</h3>
+<h3 id="coredns可以为集群中的svc创建一个域名ip的对应关系解析">CoreDNS：可以为集群中的SVC创建一个域名IP的对应关系解析</h3>
+<h3 id="dashboard给k8s集群中提供一个bs结构访问体系">Dashboard：给K8S集群中提供一个b/s结构访问体系</h3>
+<h3 id="ingress-cntroller官方只能实现四层代理ingress可以实现七层代理">Ingress Cntroller：官方只能实现四层代理，Ingress可以实现七层代理</h3>
+<h3 id="fedetation可以跨集群众中心多k8s统一管理功能">Fedetation：可以跨集群众中心多K8S统一管理功能</h3>
+<h3 id="prometheus提供k8s集群的监控能力">Prometheus：提供K8S集群的监控能力</h3>
+<h3 id="elk提供k8s集群日志同意分析接入平台">ELK：提供K8S集群日志同意分析接入平台</h3>
+<h2 id="pod和网络通讯方式">POD和网络通讯方式</h2>
+<h3 id="自主式pod">自主式Pod</h3>
+<h3 id="控制器管理的pod">控制器管理的Pod</h3>
+<pre><code>    pod：pause + 一个和多个容器（共享一个pause，容器端口不能冲突） 
+</code></pre>
+<h4 id="1控制器">1.控制器</h4>
+<pre><code>            a.RepicationController（RC）：用来确保容器应用的副本数始终保持在用户定义的副本数。即有容器异常退出时，会创建新的pod来替代。建议使用RepicationSet代替。
+            b.RepicationSet（RS）支持集合式的selector.
+            c.Deployment：自动管理ReplicationSet，不用担心和其它机制的兼容问题（比如Replication不支持rolling-update，但Deployment支持）。注：ReplicationSet可以独立使用。
+            d.Horizaontal Pod Autoscaling（HPA）：仅适用于Deployment和ReplicaSet，在V1版本中仅支持Pod的CPU利用率扩容，在V1alpha版本中，支持根据内存和用户自定义的metric扩缩容
+            e.StatefulSet：解决有状态服务的问题（Deployment和ReplicatSet是为无状态服务设计）：
+                1)  稳定的持久化存储，基于PVC来实现；
+                2）稳定的网络标志，即pod重新调度后，其PodName和HostName不变，基于HeadLess Service（即没有Cluster IP的Service）来实现；
+                3）有序部署，有序扩展，即Pod是有顺序的，在部署和扩展的时候要依据定义的顺序依次进行（即从0到N-1，在下一个Pod运行之前的所有Pod必须都是死Running和Ready状态），基于init containers来实现。
+                4）有序收缩，有序删除。
+            f.DaemonSet：确保全部（或者一些）Node上运行一个Pod副本。当有Node 加入集群式，为他们新增一个Pod，当有Node从集群中移除时，Pod也会被回收。删除DaemonSet，将会删除它创建的所有Pod。
+                1）DaemonSet的用法：
+                        a) 运行集群村的daemon，例如在每个Node上运行glusterd，ceph。
+                        b) 在每个Node上运行日志收集daemon，例如fluentd，logstash。
+                        c) 在每个Node上运行监控的daemon，例如Promethus Node Exporter。
+
+            g.Job：负责批处理任务，即仅执行依次的任务，它保证批处理任务的一个或多个Pod成功结束。
+                1）Core Job管理基于时间的Job，即在给定时间只运行一次，周期性在给的时间运行。
+</code></pre>
+<h4 id="网络通讯方式">网络通讯方式</h4>
+<pre><code>    K8S的网络模型假定了所有的Pod都在一个可以直接连通的**扁平的网络空间**中，这在Google compute Engine中是现成的网络模型，K8S假定这个网络已经存在。而在私有云中搭建K8S集群。需要自己实现这个网络模型。将不同节点上的Docker容器之间的互相访问先打通，然后运行K8S。
+    1.同一个Pod的多个容器之间localhost；
+    2.各Pod之间的通讯：Overlay Network；
+    3.Pod与Servicve之间的通讯：各节点的Iptables规则。
+    Flannel是CoreOS团队针对Kubernets设计的一个网络规划服务，简单来说，他的功能是让集中的不同节点主机创建的Docker容器具有全集群唯一的虚拟IP地址。而且他还能在这些IP地址之间建立一个覆盖网络（Overlay Network）,通过这个覆盖网络，将数据包原封不动的传递到目标容器内。
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://qiupeng1110.github.io/post/lei-jia-zai-shen-ru-jie-xi-ji-chong-yao-xing-pou-xi/">
+                  <h3 class="post-title">
+                    类加载深入解析及重要性剖析（004）
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: '',
+        owner: '',
+        admin: [''],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
